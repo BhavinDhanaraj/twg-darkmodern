@@ -1,0 +1,6 @@
+{
+  "name": "TWG Exception Management Platform",
+  "description": "Enterprise exception management platform with queues, analytics, audit tracking, data quality monitoring, and notification workflows.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TWG Exception Management Platform</title>
+    <script>
+      // Shim to ensure window.fetch is writable and assignable in sandbox/iframe environments
+      (function() {
+        try {
+          if (typeof window !== 'undefined' && typeof window.fetch === 'function') {
+            var _originalFetch = window.fetch.bind(window);
+            var _customFetch = _originalFetch;
+            try {
+              Object.defineProperty(window, 'fetch', {
+                get: function() {
+                  return _customFetch;
+                },
+                set: function(fn) {
+                  _customFetch = typeof fn === 'function' ? fn : _originalFetch;
+                },
+                configurable: true,
+                enumerable: true
+              });
+            } catch (e) {
+              // Fallback if property is already locked
+            }
+          }
+        } catch (err) {
+          // Silent catch
+        }
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
